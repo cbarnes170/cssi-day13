@@ -27,3 +27,8 @@ const handleNoteSubmit = () => {
     noteText.value = "";
   });
 }
+
+const submitButton= document.querySelector("#noteButton");
+submitButton.addEventListener('click',(e)=>{
+    handleNoteSubmit();
+})
