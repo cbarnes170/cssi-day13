@@ -54,9 +54,16 @@ const createCard = (note, noteId) => {
 };
 
 const deleteNote = (noteId) =>{
-    console.log("delete");
-    const noteToDeleteRef = firebase.database().ref(`users/${googleUser.uid}/${noteId}`);
-    noteToDeleteRef.remove();
+    const confirmDelete= document.querySelector("#confirmDeleteModal");
+    const confirmDeleteButton = document.querySelector("#confirmDeleteButton");
+    confirmDelete.classList.add("is-active");
+
+    confirmDeleteButton.addEventListener('click',(e)=>{
+        console.log("delete");
+        const noteToDeleteRef = firebase.database().ref(`users/${googleUser.uid}/${noteId}`);
+        noteToDeleteRef.remove(); 
+    })
+    closeModal(); 
 }
 
 
@@ -102,7 +109,7 @@ const saveChanges = () =>{
     const noteToEditRef = firebase.database().ref(`users/${googleUser.uid}/${noteId}`); 
     noteToEditRef.update({
         title:title,
-        note:text
+        text:text
     })
     closeModal();
 }
